@@ -4,6 +4,7 @@ import telebot
 from loguru import logger
 
 from src.constants import keyboards
+from src.utils.io import write_json
 
 
 class Bot:
@@ -26,6 +27,7 @@ class Bot:
         self.bot.reply_to(message, "Howdy, how are you doing?")
 
     def echo_all(self, message):
+        write_json(message.json, 'messages')
         self.bot.send_message(
             message.chat.id, message.text,
             reply_markup=keyboards.main
